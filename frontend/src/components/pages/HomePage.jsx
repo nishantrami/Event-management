@@ -168,238 +168,249 @@ export default function HomePage() {
   return (
     <div>
       
-      {/* 1. HERO SECTION */}
+      {/* 1. HERO SECTION WITH SOLID LUXURY BACKGROUND PHOTO */}
       <section style={{
         position: 'relative',
-        background: 'linear-gradient(180deg, #ffffff 0%, #f8fafc 100%)',
-        paddingTop: '50px',
-        paddingBottom: '80px',
-        borderBottom: '1px solid #e2e8f0',
+        backgroundColor: '#0b0f19',
+        color: '#ffffff',
+        paddingTop: '80px',
+        paddingBottom: '90px',
+        borderBottom: '1px solid #1e293b',
         overflow: 'hidden'
       }}>
-        {/* Subtle Decorative Ambient Glows */}
+        {/* Background Image with Solid Dark Overlay (No Gradient) */}
         <div style={{
           position: 'absolute',
-          top: '-120px',
-          right: '-80px',
-          width: '450px',
-          height: '450px',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(124, 58, 237, 0.08) 0%, rgba(255, 255, 255, 0) 70%)',
-          pointerEvents: 'none'
-        }} />
-        <div style={{
-          position: 'absolute',
-          bottom: '-100px',
-          left: '-80px',
-          width: '400px',
-          height: '400px',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(217, 119, 6, 0.06) 0%, rgba(255, 255, 255, 0) 70%)',
+          inset: 0,
+          backgroundImage: 'url("https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1920&q=80")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          opacity: 0.35,
           pointerEvents: 'none'
         }} />
 
-        <div className="container">
+        <div className="container" style={{ position: 'relative', zIndex: 1, maxWidth: '1000px', textAlign: 'center', margin: '0 auto' }}>
+          
+          {/* Badge */}
           <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-            gap: '50px',
-            alignItems: 'center'
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '8px',
+            background: 'rgba(255, 255, 255, 0.08)',
+            border: '1px solid rgba(255, 255, 255, 0.15)',
+            color: '#f8fafc',
+            padding: '8px 20px',
+            borderRadius: '999px',
+            fontSize: '0.88rem',
+            fontWeight: '600',
+            marginBottom: '24px'
           }}>
-            
-            {/* Left Hero Content */}
-            <div>
-              <div className="heading-tagline" style={{ marginBottom: '20px' }}>
-                <Sparkles size={16} />
-                <span>Premier Luxury Event Planning & Real-Time Booking</span>
-              </div>
+            <Sparkles size={16} style={{ color: '#fbbf24' }} />
+            <span>Premier Luxury Event Planning & Real-Time Booking</span>
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '4px',
+              marginLeft: '8px',
+              paddingLeft: '10px',
+              borderLeft: '1px solid rgba(255, 255, 255, 0.2)',
+              color: '#f8fafc'
+            }}>
+              <Star size={14} fill="#fbbf24" style={{ color: '#fbbf24' }} />
+              <span style={{ fontSize: '0.82rem', fontWeight: '700' }}>4.9/5</span>
+            </div>
+          </div>
 
-              <h1 style={{
-                fontSize: 'clamp(2.4rem, 4.8vw, 3.6rem)',
-                fontWeight: '800',
-                lineHeight: '1.16',
-                color: '#0f172a',
-                letterSpacing: '-1px',
-                marginBottom: '20px'
-              }}>
-                Where Grand Celebrations <br />
-                <span className="gradient-text-royal font-serif" style={{ fontStyle: 'italic', fontWeight: '700' }}>
-                  Become Royal Realities.
+          {/* Heading - Solid Color Only, No Gradients */}
+          <h1 style={{
+            fontSize: 'clamp(2.5rem, 5.5vw, 4.2rem)',
+            fontWeight: '800',
+            lineHeight: '1.14',
+            color: '#ffffff',
+            letterSpacing: '-1.5px',
+            marginBottom: '22px'
+          }}>
+            Where Grand Celebrations <br />
+            <span style={{ color: '#ffffff', fontStyle: 'italic', fontWeight: '800' }}>
+              Become Royal Realities.
+            </span>
+          </h1>
+
+          {/* Subtitle */}
+          <p style={{
+            fontSize: '1.2rem',
+            color: '#94a3b8',
+            lineHeight: '1.7',
+            marginBottom: '36px',
+            maxWidth: '720px',
+            margin: '0 auto 36px auto'
+          }}>
+            Curate fairytale weddings, milestone birthdays, and prestigious corporate galas with live date slot reservation, Michelin-grade catering, and master floral mandaps.
+          </p>
+
+          {/* Action Buttons */}
+          <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '16px', marginBottom: '44px' }}>
+            <Link to="/book" style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px',
+              padding: '16px 36px',
+              fontSize: '1.05rem',
+              fontWeight: '600',
+              color: '#0f172a',
+              backgroundColor: '#ffffff',
+              borderRadius: '12px',
+              transition: 'all 0.2s ease',
+              textDecoration: 'none'
+            }}
+            onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#f1f5f9'}
+            onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#ffffff'}
+            >
+              <span>Reserve Date & Plan</span>
+              <ArrowRight size={18} />
+            </Link>
+            <Link to="/events" style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '10px',
+              padding: '16px 32px',
+              fontSize: '1.05rem',
+              fontWeight: '600',
+              color: '#ffffff',
+              background: 'transparent',
+              border: '1px solid rgba(255, 255, 255, 0.25)',
+              borderRadius: '12px',
+              transition: 'all 0.2s ease',
+              textDecoration: 'none'
+            }}
+            onMouseOver={(e) => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)'}
+            onMouseOut={(e) => e.currentTarget.style.background = 'transparent'}
+            >
+              <Calendar size={18} style={{ color: '#ffffff' }} />
+              <span>Browse 10 Event Categories</span>
+            </Link>
+          </div>
+
+          {/* INTERACTIVE LIVE DATE CHECKER BAR (CENTERED CLEAN WIDGET) */}
+          <div style={{
+            maxWidth: '880px',
+            margin: '0 auto 36px auto',
+            background: '#ffffff',
+            borderRadius: '18px',
+            padding: '24px 28px',
+            boxShadow: '0 20px 40px -10px rgba(0, 0, 0, 0.3)',
+            border: '1px solid #e2e8f0',
+            color: '#0f172a',
+            textAlign: 'left'
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px', flexWrap: 'wrap', gap: '8px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span className="pulse-dot available" />
+                <span style={{ fontSize: '0.9rem', fontWeight: '700', color: '#047857' }}>
+                  Real-Time Date Availability Engine
                 </span>
-              </h1>
-
-              <p style={{
-                fontSize: '1.1rem',
-                color: '#475569',
-                lineHeight: '1.7',
-                marginBottom: '32px',
-                maxWidth: '560px'
-              }}>
-                Curate fairytale weddings, milestone birthdays, and prestigious corporate galas with live date slot reservation, Michelin-grade catering, and master floral mandaps.
-              </p>
-
-              {/* Action Buttons */}
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', marginBottom: '36px' }}>
-                <Link to="/book" className="btn-primary" style={{ padding: '14px 30px', fontSize: '1rem' }}>
-                  <span>Reserve Date & Plan</span>
-                  <ArrowRight size={18} />
-                </Link>
-                <Link to="/events" className="btn-secondary" style={{ padding: '14px 28px', fontSize: '1rem' }}>
-                  <Calendar size={18} style={{ color: '#7c3aed' }} />
-                  <span>Browse 10 Event Categories</span>
-                </Link>
               </div>
-
-              {/* Quick Proof Badges */}
-              <div style={{
-                display: 'flex',
-                flexWrap: 'wrap',
-                gap: '20px',
-                paddingTop: '20px',
-                borderTop: '1.5px solid #f1f5f9'
-              }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <CheckCircle2 size={18} style={{ color: '#10b981' }} />
-                  <span style={{ fontSize: '0.88rem', fontWeight: '700', color: '#1e293b' }}>Guaranteed Capacity Lock</span>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <CheckCircle2 size={18} style={{ color: '#10b981' }} />
-                  <span style={{ fontSize: '0.88rem', fontWeight: '700', color: '#1e293b' }}>30+ Verified Master Services</span>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <CheckCircle2 size={18} style={{ color: '#10b981' }} />
-                  <span style={{ fontSize: '0.88rem', fontWeight: '700', color: '#1e293b' }}>Zero Hidden Surcharges</span>
-                </div>
-              </div>
+              <span style={{ fontSize: '0.78rem', fontWeight: '600', color: '#0f172a', background: '#f1f5f9', padding: '4px 12px', borderRadius: '999px' }}>
+                Instant Check
+              </span>
             </div>
 
-            {/* Right Hero Interactive Widget & Visual Card */}
-            <div style={{ position: 'relative' }}>
-              
-              {/* Main Visual Image Card */}
-              <div style={{
-                borderRadius: '28px',
-                overflow: 'hidden',
-                boxShadow: '0 25px 50px -12px rgba(15, 23, 42, 0.22)',
-                border: '4px solid #ffffff',
-                position: 'relative'
-              }}>
-                <img
-                  src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80"
-                  alt="Luxury Wedding & Event Venue"
-                  style={{ width: '100%', height: '460px', objectFit: 'cover', display: 'block' }}
-                />
-                
-                {/* Image Gradient Vignette */}
-                <div style={{
-                  position: 'absolute',
-                  inset: 0,
-                  background: 'linear-gradient(180deg, rgba(15, 23, 42, 0.1) 0%, rgba(15, 23, 42, 0.5) 100%)'
-                }} />
+            <form onSubmit={handleHeroQuickCheck} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '14px', alignItems: 'end' }}>
+              <div>
+                <label style={{ fontSize: '0.8rem', fontWeight: '600', color: '#475569', display: 'block', marginBottom: '6px' }}>Event Type</label>
+                <select
+                  value={quickEvent}
+                  onChange={(e) => setQuickEvent(e.target.value)}
+                  className="form-input"
+                  style={{ padding: '10px 14px', fontSize: '0.9rem', background: '#f8fafc', borderRadius: '10px', border: '1px solid #e2e8f0' }}
+                >
+                  <option value="Wedding">Royal Wedding</option>
+                  <option value="Birthday Party">Birthday Party</option>
+                  <option value="Engagement">Engagement</option>
+                  <option value="Corporate Events">Corporate Event</option>
+                  <option value="Anniversary">Anniversary</option>
+                </select>
+              </div>
 
-                {/* Floating Top Rating Card */}
-                <div style={{
-                  position: 'absolute',
-                  top: '20px',
-                  right: '20px',
-                  background: 'rgba(255, 255, 255, 0.95)',
-                  backdropFilter: 'blur(10px)',
-                  padding: '8px 16px',
-                  borderRadius: '999px',
-                  boxShadow: 'var(--shadow-md)',
+              <div>
+                <label style={{ fontSize: '0.8rem', fontWeight: '600', color: '#475569', display: 'block', marginBottom: '6px' }}>Event Date</label>
+                <input
+                  type="date"
+                  value={quickDate}
+                  onChange={(e) => setQuickDate(e.target.value)}
+                  className="form-input"
+                  style={{ padding: '10px 14px', fontSize: '0.9rem', background: '#f8fafc', borderRadius: '10px', border: '1px solid #e2e8f0' }}
+                />
+              </div>
+
+              <div>
+                <label style={{ fontSize: '0.8rem', fontWeight: '600', color: '#475569', display: 'block', marginBottom: '6px' }}>Estimated Guests</label>
+                <input
+                  type="number"
+                  min="10"
+                  max="2000"
+                  step="25"
+                  value={quickGuests}
+                  onChange={(e) => setQuickGuests(Number(e.target.value))}
+                  className="form-input"
+                  style={{ padding: '10px 14px', fontSize: '0.9rem', background: '#f8fafc', borderRadius: '10px', border: '1px solid #e2e8f0' }}
+                />
+              </div>
+
+              <button
+                type="submit"
+                style={{
+                  padding: '12px 20px',
+                  fontSize: '0.92rem',
+                  height: '46px',
+                  width: '100%',
+                  borderRadius: '10px',
+                  background: '#0f172a',
+                  color: '#ffffff',
+                  fontWeight: '600',
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '8px'
-                }}>
-                  <Star size={16} style={{ color: '#d97706' }} fill="#d97706" />
-                  <span style={{ fontSize: '0.85rem', fontWeight: '800', color: '#0f172a' }}>4.9/5 Star Rated</span>
-                </div>
-              </div>
-
-              {/* INTERACTIVE LIVE DATE CHECKER BOX (FLOATING BEAST WIDGET) */}
-              <div style={{
-                position: 'relative',
-                marginTop: '-45px',
-                marginLeft: 'auto',
-                marginRight: 'auto',
-                maxWidth: '92%',
-                background: '#ffffff',
-                borderRadius: '22px',
-                padding: '20px 24px',
-                boxShadow: 'var(--shadow-xl)',
-                border: '1.5px solid #e2e8f0',
-                zIndex: 10
-              }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '14px' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <span className="pulse-dot available" />
-                    <span style={{ fontSize: '0.85rem', fontWeight: '800', color: '#047857' }}>
-                      Real-Time Date Availability Engine
-                    </span>
-                  </div>
-                  <span style={{ fontSize: '0.75rem', fontWeight: '700', color: '#7c3aed', background: '#ede9fe', padding: '3px 10px', borderRadius: '999px' }}>
-                    Instant Check
-                  </span>
-                </div>
-
-                <form onSubmit={handleHeroQuickCheck} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '12px', alignItems: 'end' }}>
-                  <div>
-                    <label style={{ fontSize: '0.75rem', fontWeight: '700', color: '#64748b', display: 'block', marginBottom: '4px' }}>Event Type</label>
-                    <select
-                      value={quickEvent}
-                      onChange={(e) => setQuickEvent(e.target.value)}
-                      className="form-input"
-                      style={{ padding: '8px 12px', fontSize: '0.85rem', background: '#f8fafc' }}
-                    >
-                      <option value="Wedding">Royal Wedding</option>
-                      <option value="Birthday Party">Birthday Party</option>
-                      <option value="Engagement">Engagement</option>
-                      <option value="Corporate Events">Corporate Event</option>
-                      <option value="Anniversary">Anniversary</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label style={{ fontSize: '0.75rem', fontWeight: '700', color: '#64748b', display: 'block', marginBottom: '4px' }}>Event Date</label>
-                    <input
-                      type="date"
-                      value={quickDate}
-                      onChange={(e) => setQuickDate(e.target.value)}
-                      className="form-input"
-                      style={{ padding: '8px 12px', fontSize: '0.85rem', background: '#f8fafc' }}
-                    />
-                  </div>
-
-                  <div>
-                    <label style={{ fontSize: '0.75rem', fontWeight: '700', color: '#64748b', display: 'block', marginBottom: '4px' }}>Estimated Guests</label>
-                    <input
-                      type="number"
-                      min="10"
-                      max="2000"
-                      step="25"
-                      value={quickGuests}
-                      onChange={(e) => setQuickGuests(Number(e.target.value))}
-                      className="form-input"
-                      style={{ padding: '8px 12px', fontSize: '0.85rem', background: '#f8fafc' }}
-                    />
-                  </div>
-
-                  <button
-                    type="submit"
-                    className="btn-primary"
-                    style={{ padding: '9px 16px', fontSize: '0.88rem', height: '42px', width: '100%' }}
-                  >
-                    <span>Check & Plan</span>
-                    <ArrowRight size={15} />
-                  </button>
-                </form>
-              </div>
-
-            </div>
-
+                  justifyContent: 'center',
+                  gap: '8px',
+                  cursor: 'pointer',
+                  border: 'none',
+                  transition: 'background 0.2s ease'
+                }}
+                onMouseOver={(e) => e.currentTarget.style.background = '#1e293b'}
+                onMouseOut={(e) => e.currentTarget.style.background = '#0f172a'}
+              >
+                <span>Check & Plan</span>
+                <ArrowRight size={16} />
+              </button>
+            </form>
           </div>
+
+          {/* Quick Proof Badges */}
+          <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            flexWrap: 'wrap',
+            gap: '28px',
+            paddingTop: '16px'
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <CheckCircle2 size={18} style={{ color: '#10b981' }} />
+              <span style={{ fontSize: '0.92rem', fontWeight: '600', color: '#e2e8f0' }}>Guaranteed Capacity Lock</span>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <CheckCircle2 size={18} style={{ color: '#10b981' }} />
+              <span style={{ fontSize: '0.92rem', fontWeight: '600', color: '#e2e8f0' }}>30+ Verified Master Services</span>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <CheckCircle2 size={18} style={{ color: '#10b981' }} />
+              <span style={{ fontSize: '0.92rem', fontWeight: '600', color: '#e2e8f0' }}>Zero Hidden Surcharges</span>
+            </div>
+          </div>
+
         </div>
       </section>
+
+
 
       {/* 2. METRICS & TRUST TICKER BANNER */}
       <section style={{
