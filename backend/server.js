@@ -8,7 +8,9 @@ const connectDB = require('./config/db');
 dotenv.config();
 
 // Connect to Database
-connectDB();
+connectDB().catch(err => {
+  console.warn('Initial DB connection failed:', err.message);
+});
 
 const app = express();
 
@@ -19,21 +21,45 @@ app.use(cors({
 }));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
-app.use(morgan('dev'));
+if (process.env.NODE_ENV !== 'production') {
+  app.use(morgan('dev'));
+}
 
-// Route Mounts
-app.use('/api/auth', require('./routes/authRoutes'));
-app.use('/api/admin', require('./routes/adminRoutes'));
-app.use('/api/events', require('./routes/eventRoutes'));
-app.use('/api/services', require('./routes/serviceRoutes'));
-app.use('/api/packages', require('./routes/packageRoutes'));
-app.use('/api/slots', require('./routes/slotRoutes'));
-app.use('/api/bookings', require('./routes/bookingRoutes'));
-app.use('/api/preorders', require('./routes/preorderRoutes'));
-app.use('/api/customers', require('./routes/customerRoutes'));
+// Auto-reconnect DB middleware for serverless requests
+app.use(async (req, res, next) => {
+  try {
+    await connectDB();
+    next();
+  } catch (err) {
+    if (req.path === '/api/health' || req.path === '/health' || req.path === '/') {
+      return next();
+    }
+    return res.status(500).json({
+      success: false,
+      message: 'Database connection failed. Please ensure MONGO_URI is configured in Vercel environment variables.',
+      error: process.env.NODE_ENV === 'production' ? undefined : err.message
+    });
+  }
+});
+
+// Setup API routes
+const apiRouter = express.Router();
+apiRouter.use('/auth', require('./routes/authRoutes'));
+apiRouter.use('/admin', require('./routes/adminRoutes'));
+apiRouter.use('/events', require('./routes/eventRoutes'));
+apiRouter.use('/services', require('./routes/serviceRoutes'));
+apiRouter.use('/packages', require('./routes/packageRoutes'));
+apiRouter.use('/slots', require('./routes/slotRoutes'));
+apiRouter.use('/bookings', require('./routes/bookingRoutes'));
+apiRouter.use('/preorders', require('./routes/preorderRoutes'));
+apiRouter.use('/customers', require('./routes/customerRoutes'));
+
+// Mount both with /api prefix and without to handle all reverse proxy / rewrite scenarios
+app.use('/api', apiRouter);
+app.use(apiRouter);
 
 // Health check
-app.get('/api/health', (req, res) => {
+app.get(['/api/health', '/health'], (req, res) => {
   res.status(200).json({
     status: 'online',
     timestamp: new Date().toISOString(),
@@ -64,6 +90,10 @@ app.use((err, req, res, next) => {
 });
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`🚀 Eventora Server running on port ${PORT} in ${process.env.NODE_ENV || 'development'} mode`);
-});
+if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`🚀 Eventora Server running on port ${PORT} in ${process.env.NODE_ENV || 'development'} mode`);
+  });
+}
+
+module.exports = app;
