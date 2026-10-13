@@ -826,5 +826,33 @@ export const api = {
       success: true,
       message: 'Booking deleted successfully'
     };
+  },
+
+  // Contact Inquiries API
+  submitContactInquiry: async (inquiryData) => {
+    await delay(120);
+    const { name, email, phone, message } = inquiryData;
+    if (!name || !email) {
+      const error = new Error('Please provide your name and email address');
+      error.status = 400;
+      throw error;
+    }
+    const created = db.createInquiry(inquiryData);
+    return {
+      success: true,
+      message: '🎉 Thank you! Your VIP consultation request has been received. Our senior concierge will connect within 4 hours.',
+      inquiry: created,
+      referenceNumber: created.referenceNumber
+    };
+  },
+
+  getContactInquiries: async () => {
+    await delay();
+    const inquiries = db.getInquiries();
+    return {
+      success: true,
+      count: inquiries.length,
+      inquiries
+    };
   }
 };

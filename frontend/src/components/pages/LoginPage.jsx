@@ -38,13 +38,7 @@ export default function LoginPage() {
       alignItems: 'center',
       justifyContent: 'center'
     }}>
-      <div className="card-white" style={{
-        maxWidth: '460px',
-        width: '100%',
-        padding: '40px',
-        boxShadow: 'var(--shadow-xl)',
-        borderRadius: '28px'
-      }}>
+      <div className="auth-card">
         
         {/* Header */}
         <div style={{ textAlign: 'center', marginBottom: '32px' }}>

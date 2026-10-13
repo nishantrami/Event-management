@@ -311,12 +311,7 @@ export default function BookingFlowPage() {
           marginBottom: '32px',
           boxShadow: '0 12px 30px -10px rgba(15, 23, 42, 0.08)'
         }}>
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(5, 1fr)',
-            gap: '10px',
-            alignItems: 'center'
-          }} className="stepper-grid-responsive">
+          <div className="stepper-grid-responsive">
 
             {/* Step 1 Quick Tab */}
             <button

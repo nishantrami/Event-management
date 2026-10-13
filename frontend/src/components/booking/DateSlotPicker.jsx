@@ -165,7 +165,7 @@ export default function DateSlotPicker() {
       </div>
 
       {/* Date Picker Input & Real-Time Availability Side-by-Side with Equal Heights */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '24px', alignItems: 'stretch' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))', gap: '20px', alignItems: 'stretch' }}>
         
         {/* Custom Date Input Card */}
         <div style={{

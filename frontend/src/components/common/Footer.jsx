@@ -120,8 +120,8 @@ export default function Footer() {
               <li><Link to="/book" style={{ color: '#94a3b8', fontSize: '0.9rem', transition: 'color 0.2s' }} onMouseEnter={(e) => e.target.style.color = '#c4b5fd'} onMouseLeave={(e) => e.target.style.color = '#94a3b8'}>Plan Event & Real-Time Slots</Link></li>
               <li><Link to="/services" style={{ color: '#94a3b8', fontSize: '0.9rem', transition: 'color 0.2s' }} onMouseEnter={(e) => e.target.style.color = '#c4b5fd'} onMouseLeave={(e) => e.target.style.color = '#94a3b8'}>Services & Gourmet Catering</Link></li>
               <li><Link to="/packages" style={{ color: '#94a3b8', fontSize: '0.9rem', transition: 'color 0.2s' }} onMouseEnter={(e) => e.target.style.color = '#c4b5fd'} onMouseLeave={(e) => e.target.style.color = '#94a3b8'}>Compare Pricing Packages</Link></li>
+              <li><Link to="/contact" style={{ color: '#c4b5fd', fontSize: '0.9rem', fontWeight: '700', transition: 'color 0.2s' }} onMouseEnter={(e) => e.target.style.color = '#ffffff'} onMouseLeave={(e) => e.target.style.color = '#c4b5fd'}>Contact Us & Consultations ✨</Link></li>
               <li><Link to="/my-bookings" style={{ color: '#94a3b8', fontSize: '0.9rem', transition: 'color 0.2s' }} onMouseEnter={(e) => e.target.style.color = '#c4b5fd'} onMouseLeave={(e) => e.target.style.color = '#94a3b8'}>Customer Bookings Portal</Link></li>
-              <li><Link to="/admin/login" style={{ color: '#fbbf24', fontSize: '0.9rem', fontWeight: '700' }}>Admin Console Access</Link></li>
             </ul>
           </div>
 
@@ -137,11 +137,15 @@ export default function Footer() {
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                 <Phone size={18} style={{ color: '#a78bfa', flexShrink: 0 }} />
-                <span>+91 98765 43210 / +91 80 4455 6677</span>
+                <a href="tel:+919876543210" style={{ color: '#e2e8f0', textDecoration: 'none', fontWeight: '600' }} onMouseEnter={(e) => e.target.style.color = '#c4b5fd'} onMouseLeave={(e) => e.target.style.color = '#e2e8f0'}>
+                  +91 98765 43210 / +91 80 4455 6677
+                </a>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                 <Mail size={18} style={{ color: '#a78bfa', flexShrink: 0 }} />
-                <span>concierge@eventora.luxury</span>
+                <a href="mailto:concierge@eventora.luxury" style={{ color: '#e2e8f0', textDecoration: 'none', fontWeight: '600' }} onMouseEnter={(e) => e.target.style.color = '#c4b5fd'} onMouseLeave={(e) => e.target.style.color = '#e2e8f0'}>
+                  concierge@eventora.luxury
+                </a>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                 <Clock size={18} style={{ color: '#a78bfa', flexShrink: 0 }} />

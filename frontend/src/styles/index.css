@@ -519,3 +519,329 @@ select {
 .no-scroll {
   overflow: hidden !important;
 }
+
+/* ==========================================================================
+   RESPONSIVE DESIGN SYSTEM (MOBILE, TABLET, DESKTOP)
+   ========================================================================== */
+
+/* Universal Responsive Image & Media */
+img,
+video,
+svg {
+  max-width: 100%;
+}
+
+/* Base Responsive Container */
+.container {
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 0 16px;
+  }
+}
+
+/* ==========================================================================
+   NAVBAR RESPONSIVENESS & MOBILE DRAWER
+   ========================================================================== */
+
+.nav-desktop-links {
+  display: flex !important;
+  align-items: center;
+}
+
+.nav-mobile-toggle {
+  display: none !important;
+}
+
+.nav-admin-desktop {
+  display: inline-flex;
+  align-items: center;
+}
+
+@media (max-width: 1040px) {
+  .nav-desktop-links {
+    display: none !important;
+  }
+
+  .nav-mobile-toggle {
+    display: inline-flex !important;
+  }
+}
+
+@media (max-width: 860px) {
+  .nav-admin-desktop {
+    display: none !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .nav-cart-text {
+    display: none !important;
+  }
+  .nav-user-name {
+    display: none !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .hide-on-xs {
+    display: none !important;
+  }
+  .nav-signin-text {
+    display: none !important;
+  }
+}
+
+/* Mobile Drawer Overlay & Panel */
+.mobile-drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.68);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 9999;
+  display: flex;
+  justify-content: flex-end;
+  animation: drawerFadeIn 0.22s ease-out;
+}
+
+.mobile-drawer-panel {
+  background: #ffffff;
+  width: min(100vw, 390px);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  box-shadow: -12px 0 45px rgba(0, 0, 0, 0.28);
+  animation: drawerSlideLeft 0.26s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  z-index: 10000;
+}
+
+@keyframes drawerFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes drawerSlideLeft {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* ==========================================================================
+   BOOKING FLOW & STEPPER RESPONSIVENESS
+   ========================================================================== */
+
+.booking-container {
+  width: 100%;
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+@media (max-width: 640px) {
+  .booking-container {
+    padding: 0 14px;
+  }
+}
+
+/* 5-Step Progress Tabs Responsive */
+.stepper-grid-responsive {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  align-items: center;
+}
+
+@media (max-width: 1120px) {
+  .stepper-grid-responsive {
+    display: flex !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 10px !important;
+    padding-bottom: 6px !important;
+  }
+
+  .stepper-grid-responsive > button {
+    flex-shrink: 0 !important;
+    min-width: 150px !important;
+    scroll-snap-align: start;
+  }
+}
+
+@media (max-width: 640px) {
+  .stepper-grid-responsive > button {
+    min-width: 135px !important;
+    padding: 7px 10px !important;
+  }
+}
+
+/* ==========================================================================
+   CART & SUMMARY PAGE RESPONSIVENESS
+   ========================================================================== */
+
+.cart-layout-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 440px;
+  gap: 32px;
+  align-items: start;
+}
+
+@media (max-width: 1040px) {
+  .cart-layout-grid {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+}
+
+/* ==========================================================================
+   CONTACT PAGE RESPONSIVENESS
+   ========================================================================== */
+
+.contact-main-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+  gap: 36px;
+  align-items: start;
+}
+
+@media (max-width: 980px) {
+  .contact-main-grid {
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .contact-page-wrapper .card-white {
+    padding: 22px 18px !important;
+  }
+}
+
+/* ==========================================================================
+   ADMIN PORTAL RESPONSIVENESS
+   ========================================================================== */
+
+.admin-sidebar-desktop {
+  display: flex !important;
+}
+
+.show-mobile-only {
+  display: none !important;
+}
+
+@media (max-width: 900px) {
+  .admin-sidebar-desktop {
+    display: none !important;
+  }
+
+  .admin-sidebar-open {
+    display: flex !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    bottom: 0 !important;
+    width: 275px !important;
+    z-index: 1000 !important;
+    box-shadow: 12px 0 40px rgba(0, 0, 0, 0.5) !important;
+  }
+
+  .show-mobile-only {
+    display: inline-flex !important;
+  }
+
+  .admin-header {
+    padding: 0 16px !important;
+    height: 64px !important;
+  }
+
+  .admin-main {
+    padding: 20px 14px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .hidden-mobile {
+    display: none !important;
+  }
+}
+
+/* ==========================================================================
+   RESPONSIVE TABLE UTILITY & CARD PADDING ADJUSTMENTS
+   ========================================================================== */
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table-responsive::-webkit-scrollbar {
+  height: 6px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 999px;
+}
+
+@media (max-width: 640px) {
+  .modal-content {
+    padding: 20px 16px !important;
+    max-width: 94vw !important;
+    border-radius: 20px !important;
+  }
+
+  /* Optimize touch target sizing */
+  button,
+  .btn-primary,
+  .btn-secondary,
+  .btn-accent,
+  .btn-outline {
+    min-height: 42px;
+  }
+
+  /* Form input comfort on mobile */
+  .form-input {
+    font-size: 16px; /* Prevents auto-zoom in mobile Safari */
+  }
+}
+
+/* Auth Cards Responsive */
+.auth-card {
+  max-width: 480px;
+  width: 100%;
+  padding: 40px;
+  box-shadow: var(--shadow-xl);
+  border-radius: 28px;
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+}
+
+@media (max-width: 480px) {
+  .auth-card {
+    padding: 24px 18px !important;
+    border-radius: 20px !important;
+  }
+}

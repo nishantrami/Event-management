@@ -53,13 +53,7 @@ export default function RegisterPage() {
       alignItems: 'center',
       justifyContent: 'center'
     }}>
-      <div className="card-white" style={{
-        maxWidth: '480px',
-        width: '100%',
-        padding: '40px',
-        boxShadow: 'var(--shadow-xl)',
-        borderRadius: '28px'
-      }}>
+      <div className="auth-card">
         
         <div style={{ textAlign: 'center', marginBottom: '32px' }}>
           <div style={{

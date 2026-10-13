@@ -17,6 +17,7 @@ const STORAGE_KEYS = {
   PREORDERS: 'eventora_preorders',
   SLOTS: 'eventora_slots',
   BOOKINGS: 'eventora_bookings',
+  INQUIRIES: 'eventora_inquiries',
   INITIALIZED: 'eventora_db_v1_initialized'
 };
 
@@ -226,5 +227,21 @@ export const db = {
   deleteBookingById: (id) => {
     const bookings = getCollection(STORAGE_KEYS.BOOKINGS).filter(b => b._id !== id);
     setCollection(STORAGE_KEYS.BOOKINGS, bookings);
+  },
+
+  // CONTACT INQUIRIES
+  getInquiries: () => getCollection(STORAGE_KEYS.INQUIRIES, []),
+  createInquiry: (inquiryData) => {
+    const inquiries = getCollection(STORAGE_KEYS.INQUIRIES, []);
+    const newInquiry = {
+      _id: generateId('inq'),
+      referenceNumber: `EVT-INQ-${Math.floor(100000 + Math.random() * 900000)}`,
+      createdAt: new Date().toISOString(),
+      status: 'Received',
+      ...inquiryData
+    };
+    inquiries.unshift(newInquiry);
+    setCollection(STORAGE_KEYS.INQUIRIES, inquiries);
+    return newInquiry;
   }
 };

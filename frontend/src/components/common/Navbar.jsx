@@ -33,6 +33,23 @@ export default function Navbar() {
   const { selectedPackage, selectedServices, selectedPreOrders, calculations } = useBooking();
 
   const totalSelections = (selectedPackage ? 1 : 0) + selectedServices.length + selectedPreOrders.length;
+  const logoTapsRef = useRef(0);
+  const lastLogoTapRef = useRef(0);
+
+  const handleLogoClick = (e) => {
+    const now = Date.now();
+    if (now - lastLogoTapRef.current < 700) {
+      logoTapsRef.current += 1;
+      if (logoTapsRef.current >= 5) {
+        logoTapsRef.current = 0;
+        e.preventDefault();
+        navigate('/admin/login');
+      }
+    } else {
+      logoTapsRef.current = 1;
+    }
+    lastLogoTapRef.current = now;
+  };
 
   // Auto-close drawers & dropdowns on route changes
   useEffect(() => {
@@ -93,7 +110,8 @@ export default function Navbar() {
     { label: 'Events', path: '/events', icon: Gem, sub: '10 Signature Formats' },
     { label: 'Plan & Book', path: '/book', icon: Sparkles, sub: '5-Step Event Builder', highlight: true },
     { label: 'Services', path: '/services', icon: UtensilsCrossed, sub: 'Decor, Mandap & Catering' },
-    { label: 'Packages', path: '/packages', icon: Layers, sub: 'Transparent Tiered Pricing' }
+    { label: 'Packages', path: '/packages', icon: Layers, sub: 'Transparent Tiered Pricing' },
+    { label: 'Contact', path: '/contact', icon: Phone, sub: 'VIP Inquiries & Studio' }
   ];
 
   return (
@@ -120,7 +138,7 @@ export default function Navbar() {
         }}>
           
           {/* Brand Logo */}
-          <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none', flexShrink: 0 }}>
+          <Link to="/" onClick={handleLogoClick} style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none', flexShrink: 0 }}>
             <div style={{
               width: '40px',
               height: '40px',
@@ -254,9 +272,9 @@ export default function Navbar() {
               )}
             </Link>
 
-            {/* Admin Link (Desktop / Tablet >860px only; mobile accesses via drawer) */}
-            <div className="nav-admin-desktop">
-              {isAdminLoggedIn ? (
+            {/* Admin Link (Only visible when admin is actively authenticated) */}
+            {isAdminLoggedIn && (
+              <div className="nav-admin-desktop">
                 <Link
                   to="/admin/dashboard"
                   style={{
@@ -274,36 +292,13 @@ export default function Navbar() {
                     whiteSpace: 'nowrap',
                     flexShrink: 0
                   }}
+                  title="Admin Management Console"
                 >
                   <ShieldCheck size={16} style={{ color: '#a5b4fc' }} />
                   <span>Admin</span>
                 </Link>
-              ) : (
-                <Link
-                  to="/admin/login"
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '6px',
-                    height: '40px',
-                    padding: '0 13px',
-                    borderRadius: '9999px',
-                    color: '#475569',
-                    fontSize: '0.84rem',
-                    fontWeight: '700',
-                    border: '1.5px solid #e2e8f0',
-                    background: '#ffffff',
-                    transition: 'all 0.2s',
-                    whiteSpace: 'nowrap',
-                    flexShrink: 0
-                  }}
-                  title="Admin Portal Login"
-                >
-                  <ShieldCheck size={15} style={{ color: '#7c3aed' }} />
-                  <span>Admin</span>
-                </Link>
-              )}
-            </div>
+              </div>
+            )}
 
             {/* Customer Authentication */}
             {isCustomerLoggedIn ? (
@@ -734,36 +729,38 @@ export default function Navbar() {
                 </div>
               </div>
 
-              {/* Admin Portal Entry */}
-              <div style={{ borderTop: '1px solid #f1f5f9', paddingTop: '14px' }}>
-                <Link
-                  to={isAdminLoggedIn ? '/admin/dashboard' : '/admin/login'}
-                  onClick={() => setMobileMenuOpen(false)}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    padding: '12px 16px',
-                    borderRadius: '14px',
-                    background: '#090d16',
-                    color: '#f8fafc',
-                    textDecoration: 'none'
-                  }}
-                >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                    <ShieldCheck size={18} style={{ color: '#fbbf24' }} />
-                    <div>
-                      <div style={{ fontSize: '0.88rem', fontWeight: '800', color: '#ffffff' }}>
-                        Admin Portal
-                      </div>
-                      <div style={{ fontSize: '0.72rem', color: '#94a3b8' }}>
-                        Executive Management Console
+              {/* Admin Portal Entry (Only visible when admin is actively authenticated) */}
+              {isAdminLoggedIn && (
+                <div style={{ borderTop: '1px solid #f1f5f9', paddingTop: '14px' }}>
+                  <Link
+                    to="/admin/dashboard"
+                    onClick={() => setMobileMenuOpen(false)}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      padding: '12px 16px',
+                      borderRadius: '14px',
+                      background: '#090d16',
+                      color: '#f8fafc',
+                      textDecoration: 'none'
+                    }}
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                      <ShieldCheck size={18} style={{ color: '#fbbf24' }} />
+                      <div>
+                        <div style={{ fontSize: '0.88rem', fontWeight: '800', color: '#ffffff' }}>
+                          Admin Portal
+                        </div>
+                        <div style={{ fontSize: '0.72rem', color: '#94a3b8' }}>
+                          Executive Management Console
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <ChevronRight size={16} style={{ color: '#fbbf24' }} />
-                </Link>
-              </div>
+                    <ChevronRight size={16} style={{ color: '#fbbf24' }} />
+                  </Link>
+                </div>
+              )}
 
               {/* Concierge Support Footer in Drawer */}
               <div style={{ marginTop: 'auto', background: '#f8fafc', borderRadius: '14px', padding: '14px', fontSize: '0.8rem', color: '#64748b' }}>
